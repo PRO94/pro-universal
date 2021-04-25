@@ -27,6 +27,9 @@ namespace Pro.Universal.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureLoggerService();
+
+            services.ConfigureDbContext(Configuration);
+
             services.AddControllers();
         }
 
