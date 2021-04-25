@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Entities\Configurations\" />
+    <Folder Include="Entities\Auth\" />
   </ItemGroup>
 
 </Project>
