@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Pro.Universal.Common.Services;
 using Pro.Universal.Common.Services.Interfaces;
 using Pro.Universal.Data.DbContext;
+using Pro.Universal.Data.Repositories;
+using Pro.Universal.Data.Repositories.Interfaces;
 
 namespace Pro.Universal.WebAPI.Extensions
 {
@@ -29,10 +31,10 @@ namespace Pro.Universal.WebAPI.Extensions
             });
         }
 
-        public static void ConfigureDbContext(this IServiceCollection services, IConfiguration Configuration)
+        public static void ConfigureMySqlContext(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ProUniversalContext>(opts =>
-                opts.UseSqlServer(Configuration.GetConnectionString("proConnection")));
+                opts.UseSqlServer(configuration.GetConnectionString("proConnection")));
         }
 
         public static void ConfigureLoggerService(this IServiceCollection services)
@@ -40,5 +42,9 @@ namespace Pro.Universal.WebAPI.Extensions
             services.AddSingleton<ILoggerManager, LoggerManager>();
         }
 
+        public static void ConfigureRepositoryWrapper(this IServiceCollection services)
+        {
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+        }
     }
 }

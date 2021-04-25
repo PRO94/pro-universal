@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Pro.Universal.Common.Services.Interfaces;
+using Pro.Universal.Data.Repositories.Interfaces;
 
 namespace Pro.Universal.WebAPI.Controllers
 {
@@ -8,27 +11,30 @@ namespace Pro.Universal.WebAPI.Controllers
     [Route("[controller]")]
     public class TestController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILoggerManager _logger;
+        private IRepositoryWrapper _repositoryWrapper;
 
-        public TestController(ILoggerManager logger)
+        public TestController(ILoggerManager logger, IRepositoryWrapper repositoryWrapper)
         {
             _logger = logger;
+            _repositoryWrapper = repositoryWrapper;
         }
 
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            _logger.LogInfo("Here is info message from the controller.");
-            _logger.LogDebug("Here is debug message from the controller.");
-            _logger.LogWarn("Here is warn message from the controller.");
-            _logger.LogError("Here is error message from the controller.");
+            // Test logger
+            //_logger.LogInfo("Here is info message from the controller.");
+            //_logger.LogDebug("Here is debug message from the controller.");
+            //_logger.LogWarn("Here is warn message from the controller.");
+            //_logger.LogError("Here is error message from the controller.");
 
-            return Summaries;
+            // Test repositories
+            //var roles = _repositoryWrapper.Role.FindAll().Include(c => c.Customers);
+            //var customers = _repositoryWrapper.Customer.FindAll();
+            //var user1 = _repositoryWrapper.Customer.FindByCondition(x => x.Role.Id == roles.First().Id);
+
+            return new string[] { "one", "two", "three" };
         }
     }
 }
