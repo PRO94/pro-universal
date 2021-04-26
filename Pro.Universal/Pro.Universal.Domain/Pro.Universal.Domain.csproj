@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\Auth\" />
+    <Compile Remove="Entities\Auth\**" />
+    <EmbeddedResource Remove="Entities\Auth\**" />
+    <None Remove="Entities\Auth\**" />
   </ItemGroup>
 
   <ItemGroup>

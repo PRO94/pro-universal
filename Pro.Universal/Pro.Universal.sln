@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{DE4248
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C90C4AEE-4F14-4E69-8413-C1CB26DDBD9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pro.Universal.Common", "Pro.Universal.Common\Pro.Universal.Common.csproj", "{929DC01A-0685-4F8F-B431-F0F9AA85F7C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pro.Universal.Common", "Pro.Universal.Common\Pro.Universal.Common.csproj", "{929DC01A-0685-4F8F-B431-F0F9AA85F7C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pro.Universal.Domain", "Pro.Universal.Domain\Pro.Universal.Domain.csproj", "{E5403CF1-B983-4BAA-8DED-906BDEB8F768}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pro.Universal.Domain", "Pro.Universal.Domain\Pro.Universal.Domain.csproj", "{E5403CF1-B983-4BAA-8DED-906BDEB8F768}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pro.Universal.Data", "Pro.Universal.Data.Migrations\Pro.Universal.Data.csproj", "{C56211B3-4D22-4F10-B546-A83963E3EF4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pro.Universal.Data", "Pro.Universal.Data\Pro.Universal.Data.csproj", "{C56211B3-4D22-4F10-B546-A83963E3EF4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pro.Universal.WebAPI", "Pro.Universal.WebAPI\Pro.Universal.WebAPI.csproj", "{4D7CBD60-133A-44FB-BB9C-73A378D9691C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pro.Universal.WebAPI", "Pro.Universal.WebAPI\Pro.Universal.WebAPI.csproj", "{4D7CBD60-133A-44FB-BB9C-73A378D9691C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

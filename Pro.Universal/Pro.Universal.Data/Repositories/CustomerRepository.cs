@@ -1,4 +1,6 @@
-﻿using Pro.Universal.Data.DbContext;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Pro.Universal.Data.DbContext;
 using Pro.Universal.Data.Repositories.Base;
 using Pro.Universal.Data.Repositories.Interfaces;
 using Pro.Universal.Domain.Entities;
@@ -10,6 +12,13 @@ namespace Pro.Universal.Data.Repositories
         public CustomerRepository(ProUniversalContext proUniversalContext)
             : base(proUniversalContext)
         {
+        }
+
+        public IEnumerable<Customer> GetAllCustomers()
+        {
+            return FindAll()
+                .OrderBy(c => c.FirstName)
+                .ToList();
         }
     }
 }

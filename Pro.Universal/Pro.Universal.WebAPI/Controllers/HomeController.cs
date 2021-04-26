@@ -7,14 +7,14 @@ using Pro.Universal.Data.Repositories.Interfaces;
 
 namespace Pro.Universal.WebAPI.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
-    public class TestController : ControllerBase
+    public class HomeController : ControllerBase
     {
         private readonly ILoggerManager _logger;
         private IRepositoryWrapper _repositoryWrapper;
 
-        public TestController(ILoggerManager logger, IRepositoryWrapper repositoryWrapper)
+        public HomeController(ILoggerManager logger, IRepositoryWrapper repositoryWrapper)
         {
             _logger = logger;
             _repositoryWrapper = repositoryWrapper;

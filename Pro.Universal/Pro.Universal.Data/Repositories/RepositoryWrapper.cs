@@ -5,7 +5,7 @@ namespace Pro.Universal.Data.Repositories
 {
     public class RepositoryWrapper : IRepositoryWrapper
     {
-        private ProUniversalContext _proUniversalContext;
+        private readonly ProUniversalContext _proUniversalContext;
         private ICustomerRepository _customer;
         private IRoleRepository _role;
 

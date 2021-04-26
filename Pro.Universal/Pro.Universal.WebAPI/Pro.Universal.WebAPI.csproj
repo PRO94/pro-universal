@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Pro.Universal.Common\Pro.Universal.Common.csproj" />
-    <ProjectReference Include="..\Pro.Universal.Data.Migrations\Pro.Universal.Data.csproj" />
+    <ProjectReference Include="..\Pro.Universal.Data\Pro.Universal.Data.csproj" />
     <ProjectReference Include="..\Pro.Universal.Domain\Pro.Universal.Domain.csproj" />
   </ItemGroup>
 
