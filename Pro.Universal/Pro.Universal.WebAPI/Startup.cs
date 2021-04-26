@@ -32,6 +32,8 @@ namespace Pro.Universal.WebAPI
             services.ConfigureMySqlContext(Configuration);
             services.ConfigureRepositoryWrapper();
 
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddControllers();
         }
 

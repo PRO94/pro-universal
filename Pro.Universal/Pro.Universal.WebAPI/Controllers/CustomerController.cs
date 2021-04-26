@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using AutoMapper;
 using Pro.Universal.Common.Services.Interfaces;
+using Pro.Universal.Data.DataTransferObjects;
 using Pro.Universal.Data.Repositories.Interfaces;
 
 namespace Pro.Universal.WebAPI.Controllers
@@ -11,11 +14,13 @@ namespace Pro.Universal.WebAPI.Controllers
     {
         private readonly ILoggerManager _logger;
         private readonly IRepositoryWrapper _repository;
+        private readonly IMapper _mapper;
 
-        public CustomerController(ILoggerManager logger, IRepositoryWrapper repository)
+        public CustomerController(ILoggerManager logger, IRepositoryWrapper repository, IMapper mapper)
         {
             _logger = logger;
             _repository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -27,7 +32,9 @@ namespace Pro.Universal.WebAPI.Controllers
 
                 _logger.LogInfo($"Returned all customers from database");
 
-                return Ok(customers);
+                var customersResult = _mapper.Map<IEnumerable<CustomerDto>>(customers);
+
+                return Ok(customersResult);
             }
             catch (Exception e)
             {
