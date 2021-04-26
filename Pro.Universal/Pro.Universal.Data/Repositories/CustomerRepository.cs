@@ -27,5 +27,10 @@ namespace Pro.Universal.Data.Repositories
             return FindByCondition(c => c.Id.Equals(customerId))
                 .FirstOrDefault();
         }
+
+        public void CreateCustomer(Customer customer)
+        {
+            Create(customer);
+        }
     }
 }

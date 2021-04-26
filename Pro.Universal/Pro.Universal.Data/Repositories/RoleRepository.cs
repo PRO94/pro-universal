@@ -40,5 +40,11 @@ namespace Pro.Universal.Data.Repositories
                 .Include(c => c.Customers)
                 .FirstOrDefault();
         }
+
+        public void CreateRole(Role role) => Create(role);
+
+        public void UpdateRole(Role role) => Update(role);
+
+        public void DeleteRole(Role role) => Delete(role);
     }
 }

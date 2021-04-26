@@ -11,5 +11,8 @@ namespace Pro.Universal.Data.Repositories.Interfaces
         Role GetRoleById(Guid id);
         Role GetRoleByName(string name);
         Role GetRoleWithAllCustomers(Guid id);
+        void CreateRole(Role role);
+        void UpdateRole(Role role);
+        void DeleteRole(Role role);
     }
 }

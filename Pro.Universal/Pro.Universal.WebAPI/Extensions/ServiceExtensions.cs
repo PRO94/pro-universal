@@ -7,6 +7,7 @@ using Pro.Universal.Common.Services.Interfaces;
 using Pro.Universal.Data.DbContext;
 using Pro.Universal.Data.Repositories;
 using Pro.Universal.Data.Repositories.Interfaces;
+using Pro.Universal.WebAPI.ActionFilters;
 
 namespace Pro.Universal.WebAPI.Extensions
 {
@@ -46,5 +47,10 @@ namespace Pro.Universal.WebAPI.Extensions
         {
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
         }
+
+        public static void ConfigureFilters(this IServiceCollection services)
+        {
+            services.AddScoped<ValidationFilterAttribute>();
+        }   
     }
 }

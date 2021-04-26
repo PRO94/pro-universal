@@ -67,5 +67,11 @@ namespace Pro.Universal.WebAPI.Controllers
                 return StatusCode(500, "Internal Server Error");
             }
         }
+
+        //[HttpPost]
+        //public IActionResult CreateCustomer([FromBody] CreateCustomerDto customer)
+        //{
+
+        //}
     }
 }

@@ -8,8 +8,14 @@ namespace Pro.Universal.WebAPI
     {
         public MappingProfile()
         {
+            // ----- DataBaseModels to DataTransferObjects -----
             CreateMap<Customer, CustomerDto>();
             CreateMap<Role, RoleDto>();
+
+            // ----- DataTransferObjects to DataBaseModels -----
+            CreateMap<CustomerCreateDto, Customer>();
+            CreateMap<RoleCreateDto, Role>();
+            CreateMap<RoleUpdateDto, Role>();
         }
     }
 }

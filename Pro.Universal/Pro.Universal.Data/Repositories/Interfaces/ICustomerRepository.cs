@@ -9,5 +9,6 @@ namespace Pro.Universal.Data.Repositories.Interfaces
     {
         IEnumerable<Customer> GetAllCustomers();
         Customer GetCustomerById(Guid customerId);
+        void CreateCustomer(Customer customer);
     }
 }
