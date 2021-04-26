@@ -9,8 +9,8 @@ namespace Pro.Universal.Domain.Entities.Configurations
         {
             builder.HasKey(o => o.Id);
 
-            builder.Property(t => t.Name).IsRequired();
-            builder.Property(t => t.Description).IsRequired();
+            builder.Property(t => t.Name).IsRequired().HasMaxLength(30);
+            builder.Property(t => t.Description).IsRequired().HasMaxLength(200);
         }
     }
 }
