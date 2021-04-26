@@ -29,68 +29,44 @@ namespace Pro.Universal.WebAPI.Controllers
         [HttpGet]
         public IActionResult GetAllRoles()
         {
-            try
-            {
-                var roles = _repository.Role.GetAllRoles();
+            var roles = _repository.Role.GetAllRoles();
 
-                _logger.LogInfo($"Returned all roles from database");
+            _logger.LogInfo($"Returned all roles from database");
 
-                var rolesResult = _mapper.Map<IEnumerable<RoleDto>>(roles);
+            var rolesResult = _mapper.Map<IEnumerable<RoleDto>>(roles);
 
-                return Ok(rolesResult);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError($"Something went wrong inside GetAllRoles action: {e.Message}");
-                return StatusCode(500, "Internal Server Error");
-            }
+            return Ok(rolesResult);
         }
 
         // GET api/role/5
         [HttpGet("{id}", Name = "RoleById")]
         public IActionResult GetRoleById(Guid id)
         {
-            try
+            var role = _repository.Role.GetRoleById(id);
+
+            if (role == null)
             {
-                var role = _repository.Role.GetRoleById(id);
-
-                if (role == null)
-                {
-                    _logger.LogError($"Role with id: {id}, hasn't been found in db.");
-                    return NotFound();
-                }
-
-                _logger.LogInfo($"Returned role with id: {id}");
-
-                var roleResult = _mapper.Map<RoleDto>(role);
-                return Ok(roleResult);
+                _logger.LogError($"Role with id: {id}, hasn't been found in db.");
+                return NotFound();
             }
-            catch (Exception e)
-            {
-                _logger.LogError($"Something went wrong inside GetRoleById action: {e.Message}");
-                return StatusCode(500, "Internal Server Error");
-            }
+
+            _logger.LogInfo($"Returned role with id: {id}");
+
+            var roleResult = _mapper.Map<RoleDto>(role);
+            return Ok(roleResult);
         }
 
         // GET api/role/5/customers
         [HttpGet("{id}/customers")]
         public IActionResult GetRoleByIdWithCustomers(Guid id)
         {
-            try
-            {
-                var roleWithCustomers = _repository.Role.GetRoleWithAllCustomers(id);
+            var roleWithCustomers = _repository.Role.GetRoleWithAllCustomers(id);
 
-                _logger.LogInfo($"Returned role with customers from database");
+            _logger.LogInfo($"Returned role with customers from database");
 
-                var roleResult = _mapper.Map<RoleDto>(roleWithCustomers);
+            var roleResult = _mapper.Map<RoleDto>(roleWithCustomers);
 
-                return Ok(roleResult);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError($"Something went wrong inside GetRoleByIdWithCustomers action: {e.Message}");
-                return StatusCode(500, "Internal Server Error");
-            }
+            return Ok(roleResult);
         }
 
         // POST api/role
@@ -98,73 +74,49 @@ namespace Pro.Universal.WebAPI.Controllers
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public IActionResult CreateRole([FromBody] RoleCreateDto role)
         {
-            try
-            {
-                var roleEntity = _mapper.Map<Role>(role);
+            var roleEntity = _mapper.Map<Role>(role);
                 _repository.Role.CreateRole(roleEntity);
                 _repository.Save();
 
-                var createdRole = _mapper.Map<RoleDto>(roleEntity);
+            var createdRole = _mapper.Map<RoleDto>(roleEntity);
 
-                return CreatedAtRoute("RoleById", new {id = createdRole.Id}, createdRole);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError($"Something went wrong inside CreateRole action: {e.Message}");
-                return StatusCode(500, "Internal Server Error");
-            }
+            return CreatedAtRoute("RoleById", new {id = createdRole.Id}, createdRole);
         }
 
         // PUT api/role/{id}
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public IActionResult UpdateRole(Guid id, [FromBody]RoleUpdateDto role)
+        public IActionResult UpdateRole(Guid id, [FromBody] RoleUpdateDto role)
         {
-            try
+            var roleEntity = _repository.Role.GetRoleById(id);
+            if (roleEntity == null)
             {
-                var roleEntity = _repository.Role.GetRoleById(id);
-                if (roleEntity == null)
-                {
-                    _logger.LogError($"Role with id: {id} hasn't been found in db.");
-                    return NotFound();
-                }
-
-                _mapper.Map(role, roleEntity);
-                _repository.Role.UpdateRole(roleEntity);
-                _repository.Save();
-
-                return NoContent();
+                _logger.LogError($"Role with id: {id} hasn't been found in db.");
+                return NotFound();
             }
-            catch (Exception e)
-            {
-                _logger.LogError($"Something went wrong inside UpdateRole action: {e.Message}");
-                return StatusCode(500, "Internal Server Error");
-            }
+
+            _mapper.Map(role, roleEntity);
+            _repository.Role.UpdateRole(roleEntity);
+            _repository.Save();
+
+            return NoContent();
         }
 
         // DELETE api/role/{id}
         [HttpDelete("{id}")]
         public IActionResult DeleteRole(Guid id)
         {
-            try
+            var role = _repository.Role.GetRoleById(id);
+            if (role == null)
             {
-                var role = _repository.Role.GetRoleById(id);
-                if (role == null)
-                {
-                    _logger.LogError($"Role with id: {id} hasn't been found in db");
-                    return NotFound();
-                }
-
-                _repository.Role.DeleteRole(role);
-                _repository.Save();
-
-                return NoContent();
+                _logger.LogError($"Role with id: {id} hasn't been found in db");
+                return NotFound();
             }
-            catch (Exception e)
-            {
-                _logger.LogError($"Something went wrong inside DeleteRole action: {e.Message}");
-                return StatusCode(500, "Internal Server Error");
-            }
+
+            _repository.Role.DeleteRole(role);
+            _repository.Save();
+
+            return NoContent();
         }
     }
 }
