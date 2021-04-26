@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Pro.Universal.Data.DbContext;
 using Pro.Universal.Data.Repositories.Base;
@@ -19,6 +20,12 @@ namespace Pro.Universal.Data.Repositories
             return FindAll()
                 .OrderBy(c => c.FirstName)
                 .ToList();
+        }
+
+        public Customer GetCustomerById(Guid customerId)
+        {
+            return FindByCondition(c => c.Id.Equals(customerId))
+                .FirstOrDefault();
         }
     }
 }

@@ -42,5 +42,30 @@ namespace Pro.Universal.WebAPI.Controllers
                 return StatusCode(500, "Internal Server Error");
             }
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetCustomerById(Guid id)
+        {
+            try
+            {
+                var customer = _repository.Customer.GetCustomerById(id);
+
+                if (customer == null)
+                {
+                    _logger.LogError($"Customer with id: {id}, hasn't been found in db.");
+                    return NotFound();
+                }
+
+                _logger.LogInfo($"Returned customer with id: {id}");
+
+                var customerResult = _mapper.Map<CustomerDto>(customer);
+                return Ok(customerResult);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Something went wrong inside GetCustomerById action: {e.Message}");
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
     }
 }
